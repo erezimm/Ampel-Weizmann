@@ -310,14 +310,14 @@ class InfantFilter(AbsAlertFilter):
 			self.logger.debug("rejected: three confused PS1 sources within %.2f arcsec from alert."%
 				(self.ps1_confusion_rad))
 			return None
-		"""
+		
 		# check with gaia
 		if self.is_star_in_gaia(latest):
 			self.logger.debug("rejected: within %.2f arcsec from a GAIA start (PM of PLX)" % 
 				(self.gaia_rs))
 			return None
-		"""
 		
+
 		# congratulation alert! you made it!
 		self.logger.debug("Alert %s accepted. Latest pp ID: %d"%(alert.tran_id, latest['candid']))
 		for key in self.keys_to_check:
