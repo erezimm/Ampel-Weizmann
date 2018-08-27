@@ -7,3 +7,7 @@ Contains as of August 2018:
 T0
 --
 * InfantFilter
+
+T2
+--
+* SNCosmo
