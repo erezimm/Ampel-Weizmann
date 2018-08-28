@@ -1,0 +1,74 @@
+{
+  "SlackSummaryPublisher_GeneralSN": {
+    "mycols": [
+      "ztf_name",
+      "ra",
+      "dec",
+      "magpsf",
+      "sgscore1",
+      "rb",
+      "most_recent_detection",
+      "first_detection",
+      "n_detections",
+      "distnr",
+      "distpsnr1",
+      "isdiffpos",
+      "_id"
+    ],
+    "channel(s)": [
+      "WEIZMANN_INFANTSN"
+    ],
+    "excitement_levels": {
+      "Low": 50,
+      "Mid": 200,
+      "High": 400
+    },
+    "Slack_token": "xoxb-342249709399-426410239062-8m5rKy6qBVJhx9yfSUdyJq9d",
+    "Slack_channel": "#generalsn-ampel",
+    "full_photometry": true
+  },
+  "SlackSummaryPublisher_InfantSN": {
+    "mycols": [
+      "ztf_name",
+      "ra",
+      "dec",
+      "magpsf",
+      "sgscore1",
+      "rb",
+      "most_recent_detection",
+      "first_detection",
+      "n_detections",
+      "distnr",
+      "distpsnr1",
+      "isdiffpos",
+      "_id"
+    ],
+    "channel(s)": [
+      "WEIZMANN_INFANTSN"
+    ],
+    "quiet": true,
+    "excitement_levels": {
+      "Low": 50,
+      "Mid": 200,
+      "High": 400
+    },
+    "Slack_token": "xoxb-106494213175-397912266598-TOE3sSy3KuyDr6bPIuyO730L",
+    "Slack_channel": "#ztf_infantsn",
+    "full_photometry": true
+  },
+
+  "MarshalPublisher_GeneralSN": {
+    "marshal_program" : "Weizmann Test Filter",
+    "marshal_userID" : "AMPELBOT",
+    "marshal_userpwd" : "spreepiraten",
+    "ingest_all" : true
+  },
+
+  "MarshalPublisher_InfantSN": {
+    "marshal_program" : "Test Filter",
+    "marshal_userID" : "AMPELBOT",
+    "marshal_userpwd" : "spreepiraten",
+    "ingest_all" : true
+  }
+
+}

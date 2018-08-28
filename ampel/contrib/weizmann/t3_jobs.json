@@ -1,0 +1,163 @@
+{
+    "GeneralSNSummary": {
+      "active": true,
+      "schedule": "every().day.at('15:00')",
+      "onError": {
+        "sendMail": {
+          "to": "ztf-software@desy.de",
+          "excStack": true
+        },
+        "stopAmpel": false,
+        "retry": false
+      },
+      "input": {
+        "select": {
+          "created" : {
+                "after" : {
+                    "use": "$timeDelta",
+                    "arguments" : {
+                        "days": -40
+                    }
+                }
+            },
+            "modified" : {
+                "after" : {
+                    "use": "$timeDelta",
+                    "arguments" : {
+                        "days": -1
+                    }
+                }
+            },
+            "channel(s)": [
+              "WEIZMANN_GENERALSN"
+            ],
+            "withFlag(s)": "INST_ZTF",
+            "withoutFlag(s)": "HAS_ERROR"
+        },
+        "load": {
+          "state": "$latest",
+          "doc(s)": [
+            "TRANSIENT",
+            "COMPOUND",
+            "T2RECORD",
+            "PHOTOPOINT"
+          ],
+          "t2(s)": [
+            "SNCOSMO",
+            "CATALOGMATCH"
+          ],
+          "verbose": true
+        },
+        "chunk": 200
+      },
+      "task(s)": [
+        {
+          "name": "GeneralToSlack",
+          "t3Unit": "SlackSummaryPublisher",
+          "runConfig": "GeneralSN",
+          "updateJournal": false,
+          "select": {
+            "channel(s)": [
+              "WEIZMANN_GENERALSN"
+            ],
+            "state(s)": "$latest",
+            "t2(s)": [
+              "SNCOSMO",
+              "CATALOGMATCH"
+            ],
+          }
+        },
+        {
+          "name" : "GeneralToMarshal",
+          "t3Unit" : "MarshalPublisher",
+          "runConfig" : "GeneralSN",
+          "updateJournal" : false,
+          "select" : {
+            "state" : "$latest",
+            "channel(s)" : [
+              "WEIZMANN_GENERALSN"
+            ]
+          }
+        }
+      ]
+    },
+
+
+    "InfantSNSummary": {
+      "active": true,
+      "schedule": "every().day.at('15:00')",
+      "onError": {
+        "sendMail": {
+          "to": "ztf-software@desy.de",
+          "excStack": true
+        },
+        "stopAmpel": false,
+        "retry": false
+      },
+      "input": {
+        "select": {
+          "created" : {
+                "after" : {
+                    "use": "$timeDelta",
+                    "arguments" : {
+                        "days": -40
+                    }
+                }
+            },
+            "modified" : {
+                "after" : {
+                    "use": "$timeDelta",
+                    "arguments" : {
+                        "days": -1
+                    }
+                }
+            },
+            "channel(s)": [
+              "WEIZMANN_INFANTSN"
+            ],
+            "withFlag(s)": "INST_ZTF",
+            "withoutFlag(s)": "HAS_ERROR"
+        },
+        "load": {
+          "state": "$latest",
+          "doc(s)": [
+            "TRANSIENT",
+            "COMPOUND",
+            "T2RECORD",
+            "PHOTOPOINT"
+          ],
+          "t2(s)": "CATALOGMATCH",
+          "verbose": true
+        },
+        "chunk": 200
+      },
+      "task(s)": [
+        {
+          "name": "InfantToSlack",
+          "t3Unit": "SlackSummaryPublisher",
+          "runConfig": "InfantSN",
+          "updateJournal": false,
+          "select": {
+            "channel(s)": [
+              "WEIZMANN_INFANTSN"
+            ],
+            "state(s)": "$latest",
+            "t2(s)": "CATALOGMATCH" ,
+          }
+        },
+        {
+          "name" : "InfantToMarshal",
+          "t3Unit" : "MarshalPublisher",
+          "runConfig" : "InfantSN",
+          "updateJournal" : false,
+          "select" : {
+            "state" : "$latest",
+            "channel(s)" : [
+              "WEIZMANN_INFANTSN"
+            ]
+          }
+        }
+      ]
+    }
+
+}
