@@ -34,7 +34,13 @@
                     "PS1_CONFUSION_RAD": 3,
                     "PS1_CONFUSION_SG_TOL": 0.1
                     }
-                }
+                },
+            "t2Compute" : [ 
+                    {
+                    "t2Unit" : "CATALOGMATCH",
+                    "runConfig": "sdss_class"
+                    }
+                ]
             }
         }
     }
