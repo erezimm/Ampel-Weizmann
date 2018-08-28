@@ -10,9 +10,6 @@ setup(name='ampel-contrib-weizmann',
           'ampel.channels' : [
               'weizmann = ampel.contrib.weizmann.channels:load_channels',
           ],
-          'ampel.target_sources' : [
-              'TargetSourceListener = ampel.contrib.weizmann.TargetSourceListener:TargetSourceListener',
-          ],
           'ampel.pipeline.t0' : [
               'InfantFilter = ampel.contrib.weizmann.t0.InfantFilter:InfantFilter',
           ],
