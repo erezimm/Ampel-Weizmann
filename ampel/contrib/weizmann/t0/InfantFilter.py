@@ -231,9 +231,8 @@ class InfantFilter(AbsAlertFilter):
 			return None
 		
 		# cut on the distance between the first detection and the closest non-detection prior to the first detection
-
-		upperlimits_jds = array(sorted(alert.get_values('jd', upper_limits=True)))
-
+		ulim_jds = alert.get_values('jd', upper_limits=True)
+		upperlimits_jds = array(sorted(ulim_jds)) if not ulim_jds is None else []
 		if len(upperlimits_jds) > 0:
 
 			mask			= where((detections_jds[0] - upperlimits_jds > 0) & (detections_jds[0] - upperlimits_jds < self.max_tul) )[0]
