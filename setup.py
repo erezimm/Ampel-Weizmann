@@ -1,5 +1,5 @@
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='ampel-contrib-weizmann',
       version='0.3.0',
