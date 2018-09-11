@@ -1,8 +1,8 @@
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='ampel-contrib-weizmann',
-      version='0.3.0',
+      version='0.4.1',
       packages=['ampel.contrib.weizmann',
                 'ampel.contrib.weizmann.t0'],
       package_data = {'': ['*.json']},
@@ -12,6 +12,12 @@ setup(name='ampel-contrib-weizmann',
           ],
           'ampel.pipeline.t0' : [
               'InfantFilter = ampel.contrib.weizmann.t0.InfantFilter:InfantFilter',
+          ],
+          'ampel.pipeline.t3.jobs' : [
+              'weizmann = ampel.contrib.weizmann.channels:load_t3_jobs',
+          ],
+          'ampel.pipeline.t3.configs' : [
+              'weizmann = ampel.contrib.weizmann.channels:load_t3_run_configs',
           ],
       }
 )

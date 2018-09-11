@@ -64,7 +64,7 @@
             "t2(s)": [
               "SNCOSMO",
               "CATALOGMATCH"
-            ],
+            ]
           }
         },
         {
@@ -142,7 +142,7 @@
               "WEIZMANN_INFANTSN"
             ],
             "state(s)": "$latest",
-            "t2(s)": "CATALOGMATCH" ,
+            "t2(s)": "CATALOGMATCH"
           }
         },
         {
