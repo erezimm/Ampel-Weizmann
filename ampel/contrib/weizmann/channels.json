@@ -39,6 +39,10 @@
                     {
                     "t2Unit" : "CATALOGMATCH",
                     "runConfig": "sdss_class"
+                    },
+                    {
+                    "t2Unit" : "LCQUALITY",
+                    "runConfig" : "default"
                     }
                 ]
             }
@@ -83,6 +87,10 @@
             "t2Compute" : [
                     {
                     "t2Unit" : "SNCOSMO",
+                    "runConfig" : "default"
+                    },
+                    {
+                    "t2Unit" : "LCQUALITY",
                     "runConfig" : "default"
                     },
                     {
