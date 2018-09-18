@@ -45,7 +45,8 @@
           "t2(s)": [
              "SNCOSMO",
 	     "LCQUALITY",
-             "CATALOGMATCH"
+             "CATALOGMATCH",
+	     "MARSHAMONITOR"
           ],
           "verbose": true
         },
@@ -65,7 +66,8 @@
             "t2(s)": [
               "SNCOSMO",
               "LCQUALITY",
-              "CATALOGMATCH"
+	      "CATALOGMATCH",
+	      "MARSHALMONITOR"	
             ]
           }
         },

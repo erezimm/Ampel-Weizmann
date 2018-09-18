@@ -96,7 +96,12 @@
                     {
                     "t2Unit" : "CATALOGMATCH",
                     "runConfig": "general"
+                    },
+		    {
+                    "t2Unit" : "MARSHALMONITOR",
+                    "runConfig" : "simple"
                     }
+
                 ]
             }
         }
