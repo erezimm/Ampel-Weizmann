@@ -43,8 +43,9 @@
             "PHOTOPOINT"
           ],
           "t2(s)": [
-            "SNCOSMO",
-            "CATALOGMATCH"
+             "SNCOSMO",
+	     "LCQUALITY",
+             "CATALOGMATCH"
           ],
           "verbose": true
         },
@@ -63,6 +64,7 @@
             "state(s)": "$latest",
             "t2(s)": [
               "SNCOSMO",
+              "LCQUALITY",
               "CATALOGMATCH"
             ]
           }
