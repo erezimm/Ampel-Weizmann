@@ -44,9 +44,9 @@
           ],
           "t2(s)": [
              "SNCOSMO",
-	     "LCQUALITY",
+             "LCQUALITY",
              "CATALOGMATCH",
-	     "MARSHAMONITOR"
+             "MARSHALMONITOR"
           ],
           "verbose": true
         },
@@ -57,31 +57,13 @@
           "name": "GeneralToSlack",
           "t3Unit": "SlackSummaryPublisher",
           "runConfig": "GeneralSN",
-          "updateJournal": false,
-          "select": {
-            "channel(s)": [
-              "WEIZMANN_GENERALSN"
-            ],
-            "state(s)": "$latest",
-            "t2(s)": [
-              "SNCOSMO",
-              "LCQUALITY",
-	      "CATALOGMATCH",
-	      "MARSHALMONITOR"	
-            ]
-          }
+          "updateJournal": false
         },
         {
           "name" : "GeneralToMarshal",
           "t3Unit" : "MarshalPublisher",
           "runConfig" : "GeneralSN",
-          "updateJournal" : false,
-          "select" : {
-            "state" : "$latest",
-            "channel(s)" : [
-              "WEIZMANN_GENERALSN"
-            ]
-          }
+          "updateJournal" : false
         }
       ]
     },
@@ -140,26 +122,13 @@
           "name": "InfantToSlack",
           "t3Unit": "SlackSummaryPublisher",
           "runConfig": "InfantSN",
-          "updateJournal": false,
-          "select": {
-            "channel(s)": [
-              "WEIZMANN_INFANTSN"
-            ],
-            "state(s)": "$latest",
-            "t2(s)": "CATALOGMATCH"
-          }
+          "updateJournal": false
         },
         {
           "name" : "InfantToMarshal",
           "t3Unit" : "MarshalPublisher",
           "runConfig" : "InfantSN",
-          "updateJournal" : false,
-          "select" : {
-            "state" : "$latest",
-            "channel(s)" : [
-              "WEIZMANN_INFANTSN"
-            ]
-          }
+          "updateJournal" : false
         }
       ]
     }
