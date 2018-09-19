@@ -62,8 +62,8 @@
                 "id" : "InfantFilter",
                 "runConfig": {
                     "MIN_NDET": 3,
-                    "MIN_TSPAN": 1.,
-                    "MAX_TSPAN": 10.,
+                    "MIN_TSPAN": 1.0,
+                    "MAX_TSPAN": 10.0,
                     "MAX_TUL": 2.5,
                     "MIN_RB": 0.3,
                     "MIN_FWHM": 0.5,
