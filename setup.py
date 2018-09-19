@@ -2,7 +2,7 @@
 from setuptools import setup
 
 setup(name='ampel-contrib-weizmann',
-      version='0.4.1',
+      version='0.4.3',
       packages=['ampel.contrib.weizmann',
                 'ampel.contrib.weizmann.t0'],
       package_data = {'': ['*.json']},
