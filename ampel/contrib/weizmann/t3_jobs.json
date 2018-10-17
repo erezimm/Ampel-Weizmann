@@ -1,16 +1,9 @@
-{
-    "GeneralSNSummary": {
+[
+  {
+      "job": "GeneralSNSummary",
       "active": true,
       "schedule": "every().day.at('15:00')",
-      "onError": {
-        "sendMail": {
-          "to": "ztf-software@desy.de",
-          "excStack": true
-        },
-        "stopAmpel": false,
-        "retry": false
-      },
-      "input": {
+      "transients": {
         "select": {
           "created" : {
                 "after" : {
@@ -28,21 +21,19 @@
                     }
                 }
             },
-            "channel(s)": [
-              "WEIZMANN_GENERALSN"
-            ],
-            "withFlag(s)": "INST_ZTF",
-            "withoutFlag(s)": "HAS_ERROR"
+            "channels": "WEIZMANN_GENERALSN",
+            "withFlags": "INST_ZTF",
+            "withoutFlags": "HAS_ERROR"
         },
-        "load": {
-          "state": "$latest",
-          "doc(s)": [
+        "state": "$latest",
+        "content": {
+          "docs": [
             "TRANSIENT",
             "COMPOUND",
             "T2RECORD",
             "PHOTOPOINT"
           ],
-          "t2(s)": [
+          "t2SubSelection": [
              "SNCOSMO",
              "LCQUALITY",
              "CATALOGMATCH",
@@ -52,35 +43,58 @@
         },
         "chunk": 200
       },
-      "task(s)": [
+      "tasks": [
         {
-          "name": "GeneralToSlack",
-          "t3Unit": "SlackSummaryPublisher",
-          "runConfig": "GeneralSN",
+          "task": "GeneralToSlack",
+          "unitId": "SlackSummaryPublisher",
+          "runConfig": {
+            "cols": [
+              "ztf_name",
+              "ra",
+              "dec",
+              "magpsf",
+              "sgscore1",
+              "rb",
+              "most_recent_detection",
+              "first_detection",
+              "n_detections",
+              "distnr",
+              "distpsnr1",
+              "isdiffpos",
+              "_id"
+            ],
+            "channels": [
+              "WEIZMANN_GENERALSN"
+            ],
+            "excitement": {
+              "Low": 50,
+              "Mid": 200,
+              "High": 400
+            },
+            "slackToken": "xoxb-342249709399-426410239062-8m5rKy6qBVJhx9yfSUdyJq9d",
+            "slackChannel": "#generalsn-ampel",
+            "fullPhotometry": true
+          },
           "updateJournal": false
         },
         {
-          "name" : "GeneralToMarshal",
-          "t3Unit" : "MarshalPublisher",
-          "runConfig" : "GeneralSN",
+          "task" : "GeneralToMarshal",
+          "unitId" : "MarshalPublisher",
+          "runConfig" : {
+            "marshal_program" : "Weizmann Test Filter",
+            "marshal_userID" : "AMPELBOT",
+            "marshal_userpwd" : "spreepiraten",
+            "ingest_all" : true
+          },
           "updateJournal" : false
         }
       ]
     },
-
-
-    "InfantSNSummary": {
+    {
+      "job": "InfantSNSummary",
       "active": true,
       "schedule": "every().day.at('15:00')",
-      "onError": {
-        "sendMail": {
-          "to": "ztf-software@desy.de",
-          "excStack": true
-        },
-        "stopAmpel": false,
-        "retry": false
-      },
-      "input": {
+      "transients": {
         "select": {
           "created" : {
                 "after" : {
@@ -98,39 +112,69 @@
                     }
                 }
             },
-            "channel(s)": [
-              "WEIZMANN_INFANTSN"
-            ],
-            "withFlag(s)": "INST_ZTF",
-            "withoutFlag(s)": "HAS_ERROR"
+            "channels": "WEIZMANN_INFANTSN",
+            "withFlags": "INST_ZTF",
+            "withoutFlags": "HAS_ERROR"
         },
-        "load": {
-          "state": "$latest",
-          "doc(s)": [
+        "state": "$latest",
+        "content": {
+          "docs": [
             "TRANSIENT",
             "COMPOUND",
             "T2RECORD",
             "PHOTOPOINT"
           ],
-          "t2(s)": "CATALOGMATCH",
+          "t2SubSelection": "CATALOGMATCH",
           "verbose": true
         },
         "chunk": 200
       },
-      "task(s)": [
+      "tasks": [
         {
-          "name": "InfantToSlack",
-          "t3Unit": "SlackSummaryPublisher",
-          "runConfig": "InfantSN",
+          "task": "InfantToSlack",
+          "unitId": "SlackSummaryPublisher",
+          "runConfig": {
+            "cols": [
+              "ztf_name",
+              "ra",
+              "dec",
+              "magpsf",
+              "sgscore1",
+              "rb",
+              "most_recent_detection",
+              "first_detection",
+              "n_detections",
+              "distnr",
+              "distpsnr1",
+              "isdiffpos",
+              "_id"
+            ],
+            "channels": [
+              "WEIZMANN_GENERALSN"
+            ],
+            "excitement": {
+              "Low": 50,
+              "Mid": 200,
+              "High": 400
+            },
+            "slackToken": "xoxb-106494213175-397912266598-TOE3sSy3KuyDr6bPIuyO730L",
+            "slackChannel": "#ztf_infantsn",
+            "fullPhotometry": true
+          },
           "updateJournal": false
         },
         {
-          "name" : "InfantToMarshal",
-          "t3Unit" : "MarshalPublisher",
-          "runConfig" : "InfantSN",
+          "task" : "InfantToMarshal",
+          "unitId" : "MarshalPublisher",
+          "runConfig" : {
+            "marshal_program" : "Test Filter",
+            "marshal_userID" : "AMPELBOT",
+            "marshal_userpwd" : "spreepiraten",
+            "ingest_all" : true
+          },
           "updateJournal" : false
         }
       ]
     }
 
-}
+]
