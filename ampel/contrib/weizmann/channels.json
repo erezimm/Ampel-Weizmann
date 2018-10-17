@@ -1,16 +1,18 @@
-{
-    "WEIZMANN_INFANTSN": {
+[
+    {
+    "channel": "WEIZMANN_INFANTSN",
     "version" : 1.0,
     "active" : true,
-    "sources" : {
-        "ZTFIPAC" : {
+    "sources" : [
+          {
+            "stream": "ZTFIPAC",
             "parameters" : {
                 "ZTFPartner" : true,
                 "autoComplete" : false,
                 "updatedHUZP" : false
             },
             "t0Filter" : {
-                "id" : "InfantFilter",
+                "unitId" : "InfantFilter",
                 "runConfig": {
                     "MIN_NDET": 1,
                     "MIN_TSPAN": 0.02,
@@ -37,29 +39,31 @@
                 },
             "t2Compute" : [ 
                     {
-                    "t2Unit" : "CATALOGMATCH",
+                    "unitId" : "CATALOGMATCH",
                     "runConfig": "sdss_class"
                     },
                     {
-                    "t2Unit" : "LCQUALITY",
+                    "unitId" : "LCQUALITY",
                     "runConfig" : "default"
                     }
-                ]
-            }
-        }
+            ]
+          }
+        ]
     },
-    "WEIZMANN_GENERALSN": {
+    {
+    "channel": "WEIZMANN_GENERALSN",
     "version" : 1.0,
     "active" : true,
-    "sources" : {
-        "ZTFIPAC" : {
+    "sources" : [
+         {
+            "stream": "ZTFIPAC",
             "parameters" : {
                 "ZTFPartner" : true,
                 "autoComplete" : false,
                 "updatedHUZP" : false
             },
             "t0Filter" : {
-                "id" : "InfantFilter",
+                "unitId" : "InfantFilter",
                 "runConfig": {
                     "MIN_NDET": 3,
                     "MIN_TSPAN": 1.0,
@@ -86,24 +90,23 @@
                 },
             "t2Compute" : [
                     {
-                    "t2Unit" : "SNCOSMO",
+                    "unitId" : "SNCOSMO",
                     "runConfig" : "default"
                     },
                     {
-                    "t2Unit" : "LCQUALITY",
+                    "unitId" : "LCQUALITY",
                     "runConfig" : "default"
                     },
                     {
-                    "t2Unit" : "CATALOGMATCH",
+                    "unitId" : "CATALOGMATCH",
                     "runConfig": "general"
                     },
-		    {
-                    "t2Unit" : "MARSHALMONITOR",
+                    {
+                    "unitId" : "MARSHALMONITOR",
                     "runConfig" : "simple"
                     }
-
-                ]
-            }
-        }
+            ]
+         }
+       ]
     }
-}
+]
