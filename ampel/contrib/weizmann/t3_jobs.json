@@ -36,8 +36,7 @@
           "t2SubSelection": [
              "SNCOSMO",
              "LCQUALITY",
-             "CATALOGMATCH",
-             "MARSHALMONITOR"
+             "CATALOGMATCH"
           ],
           "verbose": true
         },

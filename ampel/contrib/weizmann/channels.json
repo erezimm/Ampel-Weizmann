@@ -100,10 +100,6 @@
                     {
                     "unitId" : "CATALOGMATCH",
                     "runConfig": "general"
-                    },
-                    {
-                    "unitId" : "MARSHALMONITOR",
-                    "runConfig" : "simple"
                     }
             ]
          }
