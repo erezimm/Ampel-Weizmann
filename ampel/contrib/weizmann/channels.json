@@ -43,7 +43,7 @@
                     "runConfig": "sdss_class"
                     },
                     {
-                    "t2Unit" : "MARSHALMONITOR",
+                    "unitId" : "MARSHALMONITOR",
                     "runConfig" : "simple"
                     },
                     {
@@ -102,7 +102,7 @@
                     "runConfig" : "default"
                     },
                     {
-                    "t2Unit" : "MARSHALMONITOR",
+                    "unitId" : "MARSHALMONITOR",
                     "runConfig" : "simple"
                     },
                     {
