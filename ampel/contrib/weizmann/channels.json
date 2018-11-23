@@ -55,7 +55,7 @@
     },
     {
     "channel": "WEIZMANN_GENERALSN",
-    "active" : true,
+    "active" : false,
     "sources" : [
          {
             "stream": "ZTFIPAC",
