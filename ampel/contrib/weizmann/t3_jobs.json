@@ -37,8 +37,7 @@
              "SNCOSMO",
              "LCQUALITY",
              "CATALOGMATCH"
-          ],
-          "verbose": true
+          ]
         },
         "chunk": 200
       },
@@ -73,8 +72,7 @@
             "slackToken": "xoxb-342249709399-426410239062-8m5rKy6qBVJhx9yfSUdyJq9d",
             "slackChannel": "#generalsn-ampel",
             "fullPhotometry": true
-          },
-          "updateJournal": false
+          }
         },
         {
           "task" : "GeneralToMarshal",
@@ -84,8 +82,7 @@
             "marshal_userID" : "AMPELBOT",
             "marshal_userpwd" : "spreepiraten",
             "ingest_all" : true
-          },
-          "updateJournal" : false
+          }
         }
       ]
     },
@@ -123,8 +120,7 @@
             "T2RECORD",
             "PHOTOPOINT"
           ],
-          "t2SubSelection": "CATALOGMATCH",
-          "verbose": true
+          "t2SubSelection": "CATALOGMATCH"
         },
         "chunk": 200
       },
@@ -159,8 +155,7 @@
             "slackToken": "xoxb-106494213175-397912266598-TOE3sSy3KuyDr6bPIuyO730L",
             "slackChannel": "#ztf_infantsn",
             "fullPhotometry": true
-          },
-          "updateJournal": false
+          }
         },
         {
           "task" : "InfantToMarshal",
@@ -170,8 +165,7 @@
             "marshal_userID" : "AMPELBOT",
             "marshal_userpwd" : "spreepiraten",
             "ingest_all" : true
-          },
-          "updateJournal" : false
+          }
         }
       ]
     }
