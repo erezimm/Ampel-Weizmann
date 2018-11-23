@@ -1,7 +1,7 @@
 [
   {
       "job": "GeneralSNSummary",
-      "active": true,
+      "active": false,
       "schedule": "every().day.at('15:00')",
       "transients": {
         "select": {
@@ -79,9 +79,10 @@
           "unitId" : "MarshalPublisher",
           "runConfig" : {
             "marshal_program" : "Weizmann Test Filter",
+            "marshal_saveprogramid": 45,
             "marshal_userID" : "AMPELBOT",
             "marshal_userpwd" : "spreepiraten",
-            "ingest_all" : true
+            "marshal_save" : false
           }
         }
       ]
@@ -162,9 +163,10 @@
           "unitId" : "MarshalPublisher",
           "runConfig" : {
             "marshal_program" : "Test Filter",
+            "marshal_saveprogramid": 37,
             "marshal_userID" : "AMPELBOT",
             "marshal_userpwd" : "spreepiraten",
-            "ingest_all" : true
+            "marshal_save" : false
           }
         }
       ]
