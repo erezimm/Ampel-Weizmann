@@ -38,29 +38,6 @@
           "task": "GeneralToSlack",
           "unitId": "SlackSummaryPublisher",
           "runConfig": {
-            "cols": [
-              "ztf_name",
-              "ra",
-              "dec",
-              "magpsf",
-              "sgscore1",
-              "rb",
-              "most_recent_detection",
-              "first_detection",
-              "n_detections",
-              "distnr",
-              "distpsnr1",
-              "isdiffpos",
-              "_id"
-            ],
-            "channels": [
-              "WEIZMANN_GENERALSN"
-            ],
-            "excitement": {
-              "Low": 50,
-              "Mid": 200,
-              "High": 400
-            },
             "slackToken": "xoxb-342249709399-426410239062-8m5rKy6qBVJhx9yfSUdyJq9d",
             "slackChannel": "#generalsn-ampel",
             "fullPhotometry": true
@@ -114,29 +91,6 @@
           "task": "InfantToSlack",
           "unitId": "SlackSummaryPublisher",
           "runConfig": {
-            "cols": [
-              "ztf_name",
-              "ra",
-              "dec",
-              "magpsf",
-              "sgscore1",
-              "rb",
-              "most_recent_detection",
-              "first_detection",
-              "n_detections",
-              "distnr",
-              "distpsnr1",
-              "isdiffpos",
-              "_id"
-            ],
-            "channels": [
-              "WEIZMANN_GENERALSN"
-            ],
-            "excitement": {
-              "Low": 50,
-              "Mid": 200,
-              "High": 400
-            },
             "slackToken": "xoxb-106494213175-397912266598-TOE3sSy3KuyDr6bPIuyO730L",
             "slackChannel": "#ztf_infantsn",
             "fullPhotometry": true
