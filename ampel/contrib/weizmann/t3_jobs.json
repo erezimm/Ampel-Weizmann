@@ -23,11 +23,12 @@
             "TRANSIENT",
             "COMPOUND",
             "T2RECORD",
-            "PHOTOPOINT"
+            "PHOTOPOINT",
+            "UPPERLIMIT"
           ],
           "t2SubSelection": [
              "SNCOSMO",
-             "LCQUALITY",
+             "MARSHALMONITOR",
              "CATALOGMATCH"
           ]
         },
@@ -80,9 +81,13 @@
             "TRANSIENT",
             "COMPOUND",
             "T2RECORD",
-            "PHOTOPOINT"
+            "PHOTOPOINT",
+            "UPPERLIMIT"
           ],
-          "t2SubSelection": "CATALOGMATCH"
+          "t2SubSelection": [
+             "MARSHALMONITOR",
+             "CATALOGMATCH"
+          ]
         },
         "chunk": 200
       },

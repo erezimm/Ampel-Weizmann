@@ -44,10 +44,6 @@
                     {
                     "unitId" : "MARSHALMONITOR",
                     "runConfig" : "simple"
-                    },
-                    {
-                    "unitId" : "LCQUALITY",
-                    "runConfig" : "default"
                     }
             ]
           }
@@ -93,10 +89,6 @@
             "t2Compute" : [
                     {
                     "unitId" : "SNCOSMO",
-                    "runConfig" : "default"
-                    },
-                    {
-                    "unitId" : "LCQUALITY",
                     "runConfig" : "default"
                     },
                     {
