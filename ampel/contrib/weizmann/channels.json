@@ -1,7 +1,7 @@
 [
     {
     "channel": "WEIZMANN_INFANTSN",
-    "active" : true,
+    "active" : false,
     "sources" : [
           {
             "stream": "ZTFIPAC",
