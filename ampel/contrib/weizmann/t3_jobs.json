@@ -1,62 +1,4 @@
 [
-  {
-      "job": "GeneralSNSummary",
-      "active": false,
-      "schedule": "every().day.at('15:00')",
-      "transients": {
-        "select": {
-            "modified" : {
-                "after" : {
-                    "use": "$timeDelta",
-                    "arguments" : {
-                        "days": -1
-                    }
-                }
-            },
-            "channels": "WEIZMANN_GENERALSN",
-            "withFlags": "INST_ZTF",
-            "withoutFlags": "HAS_ERROR"
-        },
-        "state": "$latest",
-        "content": {
-          "docs": [
-            "TRANSIENT",
-            "COMPOUND",
-            "T2RECORD",
-            "PHOTOPOINT",
-            "UPPERLIMIT"
-          ],
-          "t2SubSelection": [
-             "SNCOSMO",
-             "MARSHALMONITOR",
-             "CATALOGMATCH"
-          ]
-        },
-        "chunk": 200
-      },
-      "tasks": [
-        {
-          "task": "GeneralToSlack",
-          "unitId": "SlackSummaryPublisher",
-          "runConfig": {
-            "slackToken": "xoxb-342249709399-426410239062-8m5rKy6qBVJhx9yfSUdyJq9d",
-            "slackChannel": "#generalsn-ampel",
-            "fullPhotometry": true
-          }
-        },
-        {
-          "task" : "GeneralToMarshal",
-          "unitId" : "MarshalPublisher",
-          "runConfig" : {
-            "marshal_program" : "Weizmann Test Filter",
-            "marshal_saveprogramid": 45,
-            "marshal_userID" : "AMPELBOT",
-            "marshal_userpwd" : "spreepiraten",
-            "marshal_save" : false
-          }
-        }
-      ]
-    },
     {
       "job": "InfantSNSummary",
       "active": true,
@@ -96,6 +38,29 @@
           "task": "InfantToSlack",
           "unitId": "SlackSummaryPublisher",
           "runConfig": {
+            "cols": [
+              "ztf_name",
+              "ra",
+              "dec",
+              "magpsf",
+              "sgscore1",
+              "rb",
+              "most_recent_detection",
+              "first_detection",
+              "n_detections",
+              "distnr",
+              "distpsnr1",
+              "isdiffpos",
+              "_id"
+            ],
+            "channels": [
+              "WEIZMANN_INFANTSN"
+            ],
+            "excitement": {
+              "Low": 50,
+              "Mid": 200,
+              "High": 400
+            },
             "slackToken": "xoxb-106494213175-397912266598-TOE3sSy3KuyDr6bPIuyO730L",
             "slackChannel": "#ztf_infantsn",
             "fullPhotometry": true
@@ -105,11 +70,15 @@
           "task" : "InfantToMarshal",
           "unitId" : "MarshalPublisher",
           "runConfig" : {
-            "marshal_program" : "Test Filter",
-            "marshal_saveprogramid": 37,
-            "marshal_userID" : "AMPELBOT",
-            "marshal_userpwd" : "spreepiraten",
-            "marshal_save" : false
+            "marshal_program" : "Weizmann Test Filter",
+            "marshal_saveprogramid": 45,
+            "marshal_auth": ["AMPELBOT", "spreepiraten"],
+            "marshal_save" : true,
+            "use_candidates": false,
+            "check_avro_ingest" : false,
+            "ingest_all_avros" : true,
+            "check_save" : true,
+            "force_submit" : false
           }
         }
       ]
