@@ -53,9 +53,6 @@
               "isdiffpos",
               "_id"
             ],
-            "channels": [
-              "WEIZMANN_INFANTSN"
-            ],
             "excitement": {
               "Low": 50,
               "Mid": 200,
