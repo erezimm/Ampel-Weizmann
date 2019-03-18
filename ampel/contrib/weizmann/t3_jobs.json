@@ -62,7 +62,44 @@
             "slackChannel": "#ztf_infantsn",
             "fullPhotometry": true
           }
+        }
+      ]
+    },
+    {
+      "job": "InfantSNMarshal",
+      "active": true,
+      "schedule": "every().day.at('15:00')",
+      "transients": {
+        "select": {
+            "modified" : {
+                "after" : {
+                    "use": "$timeDelta",
+                    "arguments" : {
+                        "days": -1
+                    }
+                }
+            },
+            "channels": "WEIZMANN_INFANTSN",
+            "withFlags": "INST_ZTF",
+            "withoutFlags": "HAS_ERROR"
         },
+        "state": "$latest",
+        "content": {
+          "docs": [
+            "TRANSIENT",
+            "COMPOUND",
+            "T2RECORD",
+            "PHOTOPOINT",
+            "UPPERLIMIT"
+          ],
+          "t2SubSelection": [
+             "MARSHALMONITOR",
+             "CATALOGMATCH"
+          ]
+        },
+        "chunk": 200
+      },
+      "tasks": [
         {
           "task" : "InfantToMarshal",
           "unitId" : "MarshalPublisher",
@@ -80,5 +117,4 @@
         }
       ]
     }
-
 ]
