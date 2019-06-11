@@ -1,7 +1,7 @@
 [
     {
       "job": "InfantSNSummary",
-      "active": true,
+      "active": false,
       "schedule": "every().day.at('15:00')",
       "transients": {
         "select": {
