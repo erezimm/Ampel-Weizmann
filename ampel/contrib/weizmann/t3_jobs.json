@@ -7,10 +7,8 @@
         "select": {
             "modified" : {
                 "after" : {
-                    "use": "$timeDelta",
-                    "arguments" : {
-                        "days": -1
-                    }
+                    "use": "$timeLastRun",
+                    "event" : "InfantSNSummary"
                 }
             },
             "channels": "WEIZMANN_INFANTSN",
