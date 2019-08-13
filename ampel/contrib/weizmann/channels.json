@@ -18,6 +18,7 @@
                     "MAX_TSPAN": 4.5,
                     "MAX_TUL": 2.5,
                     "MIN_RB": 0.3,
+                    "MIN_DRB": 0.3,
                     "MIN_FWHM": 0.5,
                     "MAX_FWHM": 5.0,
                     "MAX_ELONG": 100,
@@ -65,8 +66,8 @@
                 "runConfig": {
                     "MIN_NDET": 3,
                     "MIN_TSPAN": 1.0,
-                    "MAX_TSPAN": 10.0,
-                    "MAX_TUL": 2.5,
+                    "MAX_TSPAN": 13.0,
+                    "MAX_TUL": 6,
                     "MIN_RB": 0.3,
                     "MIN_FWHM": 0.5,
                     "MAX_FWHM": 5.0,
