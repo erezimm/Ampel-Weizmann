@@ -1,3 +1,10 @@
 /ampel_contrib_weizmann.egg-info/
 /ampel/contrib/weizmann/__pycache__/
 /ampel/contrib/weizmann/t0/__pycache__/
+/Catalogues
+/output
+InfantFilter_orig.py
+doit.sh
+log.log
+results.log
+test_decent.py
