@@ -39,12 +39,8 @@
                 },
             "t2Compute" : [ 
                     {
-                    "unitId" : "CATALOGMATCH",
-                    "runConfig": "sdss_class"
-                    },
-                    {
-                    "unitId" : "MARSHALMONITOR",
-                    "runConfig" : "simple"
+                    "t2Unit" : "CATALOGMATCH",
+                    "runConfig": "general"
                     }
             ]
           }
