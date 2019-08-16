@@ -30,7 +30,7 @@ class InfantFilter(DecentFilter):
 	def __init__(self, on_match_t2_units, base_config=None, run_config=None, logger=None):
 		"""
 		"""
-		if run_config is None or len(run_config) == 0:
+		if run_config is None:
 			raise ValueError("Please check you run configuration")
 
 		self.on_match_t2_units = on_match_t2_units
@@ -55,6 +55,9 @@ class InfantFilter(DecentFilter):
 		# remember the pars
 		self.max_tul					= run_config['MAX_TUL']
 		self.min_fwhm					= run_config['MIN_FWHM']
+
+
+
 
 	def apply(self, alert):
 		"""
