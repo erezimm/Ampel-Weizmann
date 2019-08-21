@@ -12,6 +12,7 @@ import logging
 from numpy import array, logical_and, where
 from urllib.parse import urlparse
 from astropy.time import Time
+from pydantic import BaseModel
 
 from ampel.contrib.hu.t0.DecentFilter import DecentFilter
 
@@ -25,7 +26,37 @@ class InfantFilter(DecentFilter):
 	# Static version info
 	version = 1.0
 	resources = ('catsHTM.default',)
-	
+
+
+	class RunConfig(BaseModel):
+		"""
+ 		Necessary class to validate configuration.
+		"""
+		
+		MIN_NDET					: int	# number of previous detections
+		MIN_TSPAN 					: float	# minimum duration of alert detection history [days]
+		MAX_TSPAN 					: float # maximum duration of alert detection history [days]
+		MAX_TUL						: float # # maximum time between the first detection and the first non-detection prior to that [days]
+		MIN_FWHM					: float # sexctrator FWHM (assume Gaussian) [pix]
+		MIN_RB						: float # real bogus score
+		MIN_DRB						: float = 0.  # deep learning real bogus score
+		MAX_FWHM					: float # sexctrator FWHM (assume Gaussian) [pix]
+		MAX_ELONG					: float	# Axis ratio of image: aimage / bimage 
+		MAX_MAGDIFF					: float	# Difference: magap - magpsf [mag]
+		MAX_NBAD					: int	# number of bad pixels in a 5 x 5 pixel stamp
+		MIN_DIST_TO_SSO				: float	#distance to nearest solar system object [arcsec]
+		MIN_GAL_LAT 				: float	#minium distance from galactic plane. Set to negative to disable cut.
+		GAIA_RS						: float	#search radius for GAIA DR2 matching [arcsec]
+		GAIA_PM_SIGNIF				: float	# significance of proper motion detection of GAIA counterpart [sigma]
+		GAIA_PLX_SIGNIF				: float	# significance of parallax detection of GAIA counterpart [sigma]
+		GAIA_VETO_GMAG_MIN			: float	# min gmag for normalized distance cut of GAIA counterparts [mag]
+		GAIA_VETO_GMAG_MAX			: float	# max gmag for normalized distance cut of GAIA counterparts [mag]
+		GAIA_EXCESSNOISE_SIG_MAX	: float	# maximum allowed noise (expressed as significance) for Gaia match to be trusted.
+		PS1_SGVETO_RAD				: float	# maximum distance to closest PS1 source for SG score veto [arcsec]
+		PS1_SGVETO_SGTH				: float	# maximum allowed SG score for PS1 source within PS1_SGVETO_RAD
+		PS1_CONFUSION_RAD			: float	# reject alerts if the three PS1 sources are all within this radius [arcsec]
+		PS1_CONFUSION_SG_TOL		: float	# and if the SG score of all of these 3 sources is within this tolerance to 0.5
+
 	
 	def __init__(self, on_match_t2_units, base_config=None, run_config=None, logger=None):
 		"""
@@ -39,22 +70,10 @@ class InfantFilter(DecentFilter):
 		# init the parent DecentFilter
 		DecentFilter.__init__(self, self.on_match_t2_units, base_config, run_config, logger=self.logger)
 		
-		# now add the parameters which are relevant for this
-		# new filter. All the others are passed to the DecentFilter
-		config_params = (
-			'MAX_TUL',					# maximum time between the first detection and the first non-detection prior to that [days]
-			'MIN_FWHM',					# sexctrator FWHM (assume Gaussian) [pix]
-			)
-		for el in config_params:
-			if el not in run_config:
-				raise ValueError("Parameter %s missing, please check your channel config" % el)
-			if run_config[el] is None:
-				raise ValueError("Parameter %s is None, please check your channel config" % el)
-			self.logger.info("Using %s=%s" % (el, run_config[el]))
 		
 		# remember the pars
-		self.max_tul					= run_config['MAX_TUL']
-		self.min_fwhm					= run_config['MIN_FWHM']
+		self.max_tul					= run_config.dict()['MAX_TUL']
+		self.min_fwhm					= run_config.dict()['MIN_FWHM']
 
 
 
@@ -71,7 +90,7 @@ class InfantFilter(DecentFilter):
 		# cut on length of detection history
 		detections_jds = array(sorted(alert.get_values('jd', upper_limits=False)))
 		det_tspan = detections_jds[-1] - detections_jds[0]
-		if not (self.min_tspan < det_tspan < self.max_tspan):
+		if not (self.min_tspan <= det_tspan <= self.max_tspan):
 			self.logger.debug("rejected: detection history is %.3f d long, requested between %.3f and %.3f d"%
 				(det_tspan, self.min_tspan, self.max_tspan))
 			return None
