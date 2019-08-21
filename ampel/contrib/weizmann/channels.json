@@ -13,7 +13,7 @@
             "t0Filter" : {
                 "unitId" : "InfantFilter",
                 "runConfig": {
-                    "MIN_NDET": 1,
+                    "MIN_NDET": 2,
                     "MIN_TSPAN": 0.02,
                     "MAX_TSPAN": 4.5,
                     "MAX_TUL": 2.5,
