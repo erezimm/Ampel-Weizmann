@@ -9,6 +9,7 @@ tar_path = join(dirname(__file__),'ztf_public_20180731_cut.tar.gz')
 
 runConfig = InfantFilter.RunConfig(
                     MIN_NDET = 1,
+                    MAX_NDET = 10,
                     MIN_TSPAN = 0,
                     MAX_TSPAN = 4.5,
                     MAX_TUL = 2.5,

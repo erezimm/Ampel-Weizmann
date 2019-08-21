@@ -33,7 +33,8 @@ class InfantFilter(DecentFilter):
  		Necessary class to validate configuration.
 		"""
 		
-		MIN_NDET					: int	# number of previous detections
+		MIN_NDET					: int	# min number of previous detections
+		MAX_NDET					: int	# max number of previous detections (allows to set separate configurations for these)
 		MIN_TSPAN 					: float	# minimum duration of alert detection history [days]
 		MAX_TSPAN 					: float # maximum duration of alert detection history [days]
 		MAX_TUL						: float # # maximum time between the first detection and the first non-detection prior to that [days]
@@ -72,8 +73,10 @@ class InfantFilter(DecentFilter):
 		
 		
 		# remember the pars
-		self.max_tul					= run_config.dict()['MAX_TUL']
-		self.min_fwhm					= run_config.dict()['MIN_FWHM']
+		rcdict = run_config.dict()
+		self.max_tul					= rcdict['MAX_TUL']
+		self.min_fwhm					= rcdict['MIN_FWHM']
+		self.max_ndet					= rcdict['MAX_NDET']
 
 
 
@@ -86,6 +89,11 @@ class InfantFilter(DecentFilter):
 		# --------------------------------------------------------------------- #
 		#					CUT ON THE HISTORY OF THE ALERT						#
 		# --------------------------------------------------------------------- #
+
+		npp = len(alert.pps)
+		if not (self.min_ndet <= npp <= self.max_ndet):
+			self.logger.info(None, extra={'nDet': npp})
+			return None
 
 		# cut on length of detection history
 		detections_jds = array(sorted(alert.get_values('jd', upper_limits=False)))
@@ -119,7 +127,7 @@ class InfantFilter(DecentFilter):
 		#							IMAGE QUALITY CUTS							#
 		# --------------------------------------------------------------------- #
 
-		latest = alert.pps[0]
+		latest = alert.pps[0]    # Not guranteed to be latest!?
 		if not self._alert_has_keys(latest):
 			return None
 

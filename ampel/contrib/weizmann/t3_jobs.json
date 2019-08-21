@@ -11,7 +11,7 @@
                     "event": "InfantSNSummary"
                 }
             },
-            "channels": "WEIZMANN_INFANTSN",
+            "channels": {"anyOf": ["WEIZMANN_INFANTSN","WEIZMANN_INFANTSN_SINGLE"] },
             "withFlags": "INST_ZTF",
             "withoutFlags": "HAS_ERROR"
         },

@@ -14,6 +14,7 @@ def tar_path():
 def testrunconfig():
     return InfantFilter.RunConfig(
                     MIN_NDET = 1,
+                    MAX_NDET = 10,
                     MIN_TSPAN = 0,
                     MAX_TSPAN = 4.5,
                     MAX_TUL = 2.5,
