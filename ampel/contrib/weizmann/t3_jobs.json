@@ -42,21 +42,6 @@
             "fullPhotometry": true,
             "quiet": true
           }
-        },
-        {
-          "task" : "InfantToMarshal",
-          "unitId" : "MarshalPublisher",
-          "runConfig": {
-            "marshal_program": "Test Filter",
-            "marshal_saveprogramid": 37,
-            "marshal_auth": ["AMPELBOT", "spreepiraten"],
-            "marshal_save" : true,
-            "use_candidates": false,
-            "check_avro_ingest" : false,
-            "ingest_all_avros" : true,
-            "check_save" : true,
-            "force_submit" : false
-          }
         }
       ]
     }
