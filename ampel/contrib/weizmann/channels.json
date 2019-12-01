@@ -152,5 +152,32 @@
             ]
          }
        ]
+    },
+    {
+    "channel": "wiz_elliptical_transients",
+    "active" : true,
+    "sources" : [
+         {
+            "stream": "ZTFIPAC",
+            "parameters" : {
+                "ZTFPartner" : true,
+                "autoComplete" : true,
+                "updatedHUZP" : false
+            },
+            "t0Filter" : {
+                "unitId" : "WeizmannEllipticalFilter",
+                "runConfig": {
+                    "MinNdet": 2,
+                    "EllipticalSearchRadius": 30
+                    }
+                },
+            "t2Compute" : [
+                    {
+                    "unitId" : "CATALOGMATCH",
+                    "runConfig": "general"
+                    }
+            ]
+         }
+       ]
     }
 ]

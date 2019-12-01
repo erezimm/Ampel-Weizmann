@@ -12,7 +12,7 @@ setup(name='ampel-contrib-weizmann',
           ],
           'ampel.pipeline.t0.units' : [
               'InfantFilter = ampel.contrib.weizmann.t0.InfantFilter:InfantFilter',
-              'CoreCollapseEllipticalFilter = ampel.contrib.weizmann.t0.CoreCollapseEllipticalFilter:CoreCollapseEllipticalFilter',
+              'WeizmannEllipticalFilter = ampel.contrib.weizmann.t0.WeizmannEllipticalFilter:WeizmannEllipticalFilter',
           ],
           'ampel.pipeline.t3.jobs' : [
               'weizmann = ampel.contrib.weizmann.channels:load_t3_jobs',
