@@ -1,0 +1,21 @@
+channel: WEIZMANN_GENERALSN
+contact: ampel@desy.de
+active: true
+auto_complete: false
+template: ztf_uw_private
+t0_filter:
+  unit: InfantFilter
+  config: InfantSN
+  override:
+    min_ndet: 3
+    max_ndet: 999
+    min_tspan: 1.0
+    max_tspan: 13.0
+    max_tul: 6
+t2_compute:
+  - unit: T2CatalogMatch
+    config: '%T2CatalogMatch_general'
+  - unit: T2SNCosmo
+    config:
+      model: salt2
+      upper_limits: false

@@ -1,0 +1,15 @@
+channel: WEIZMANN_INFANTSN_SINGLE
+contact: ampel@desy.de
+active: true
+auto_complete: false
+template: ztf_uw_private
+t0_filter:
+  unit: InfantFilter
+  config: InfantSN
+  override:
+    min_ndet: 1
+    max_ndet: 1
+    min_tspan: 0
+t2_compute:
+  - unit: T2CatalogMatch
+    config: '%T2CatalogMatch_general'

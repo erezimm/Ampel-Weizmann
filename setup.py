@@ -1,21 +1,26 @@
+from setuptools import find_namespace_packages, setup
 
-from setuptools import setup
-
-setup(name='ampel-contrib-weizmann',
-      version='0.5.0',
-      packages=['ampel.contrib.weizmann',
-                'ampel.contrib.weizmann.t0'],
-      package_data = {'': ['*.json']},
-      entry_points = {
-          'ampel.channels' : [
-              'weizmann = ampel.contrib.weizmann.channels:load_channels',
-          ],
-          'ampel.pipeline.t0.units' : [
-              'InfantFilter = ampel.contrib.weizmann.t0.InfantFilter:InfantFilter',
-              'WeizmannEllipticalFilter = ampel.contrib.weizmann.t0.WeizmannEllipticalFilter:WeizmannEllipticalFilter',
-          ],
-          'ampel.pipeline.t3.jobs' : [
-              'weizmann = ampel.contrib.weizmann.channels:load_t3_jobs',
-          ]
-      }
+setup(
+    name="ampel-contrib-weizmann",
+    version="0.7.0",
+    packages=find_namespace_packages(),
+    package_data={
+        "conf": [
+            "*.json",
+            "**/*.json",
+            "**/**/*.json",
+            "*.yaml",
+            "**/*.yaml",
+            "**/**/*.yaml",
+            "*.yml",
+            "**/*.yml",
+            "**/**/*.yml",
+        ],
+    },
+    install_requires=[
+        "ampel-interface",
+        "ampel-photometry",
+        "ampel-contrib-hu",
+        "astropy",
+    ],
 )

@@ -1,0 +1,18 @@
+name: InfantSNSummary
+schedule: every(60).minutes
+tier: 3
+template: ztf_periodic_summary
+channel:
+  any_of:
+    - WEIZMANN_INFANTSN
+    - WEIZMANN_INFANTSN_SINGLE
+load:
+  - TRANSIENT
+  - COMPOUND
+  - DATAPOINT
+  - T2RECORD
+run:
+  - unit: SlackSummaryPublisher
+    config: ztf_generalsn
+    override:
+      slack_channel: "#infantsn_ampel"
