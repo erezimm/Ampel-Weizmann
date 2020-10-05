@@ -1,55 +1,55 @@
-import pytest
-from os.path import dirname, join
 import logging
-from ampel.ztf.pipeline.t0.DevAlertProcessor import DevAlertProcessor
+from os.path import dirname, join
+
+import pytest
+
 from ampel.contrib.weizmann.t0.InfantFilter import InfantFilter
+from ampel.log.AmpelLogger import AmpelLogger
+from ampel.ztf.dev.DevAlertProcessor import DevAlertProcessor
 
 
 # Load mixed set of transients for check
 @pytest.fixture
 def tar_path():
-    return join(dirname(__file__),'ztf_public_20180731_cut.tar.gz')
+    return join(dirname(__file__), "ztf_public_20180731_cut.tar.gz")
+
 
 @pytest.fixture
 def testrunconfig():
-    return InfantFilter.RunConfig(
-                    MIN_NDET = 1,
-                    MAX_NDET = 10,
-                    MIN_TSPAN = 0,
-                    MAX_TSPAN = 4.5,
-                    MAX_TUL = 2.5,
-                    MIN_RB = 0.3,
-                    MIN_DRB = 0,
-                    MIN_FWHM = 0.5,
-                    MAX_FWHM = 5.0,
-                    MAX_ELONG = 100,
-                    MAX_MAGDIFF = 0.75,
-                    MAX_NBAD = 5,
-                    MIN_DIST_TO_SSO = 20,
-                    MIN_GAL_LAT = 14,
-                    GAIA_RS = 0,
-                    GAIA_PM_SIGNIF = 3,
-                    GAIA_PLX_SIGNIF = 3,
-                    GAIA_VETO_GMAG_MIN = 9,
-                    GAIA_VETO_GMAG_MAX = 20,
-                    GAIA_EXCESSNOISE_SIG_MAX = 999,
-                    PS1_SGVETO_RAD = 2,
-                    PS1_SGVETO_SGTH = 0.76,
-                    PS1_CONFUSION_RAD = 3,
-                    PS1_CONFUSION_SG_TOL = 0.1
-                    )
-
-
+    return {
+        "min_ndet": 1,
+        "max_ndet": 10,
+        "min_tspan": 0,
+        "max_tspan": 4.5,
+        "max_tul": 2.5,
+        "min_rb": 0.3,
+        "min_drb": 0,
+        "min_fwhm": 0.5,
+        "max_fwhm": 5.0,
+        "max_elong": 100,
+        "max_magdiff": 0.75,
+        "max_nbad": 5,
+        "min_sso_dist": 20,
+        "min_gal_lat": 14,
+        "gaia_rs": 0,
+        "gaia_pm_signif": 3,
+        "gaia_plx_signif": 3,
+        "gaia_veto_gmag_min": 9,
+        "gaia_veto_gmag_max": 20,
+        "gaia_excessnoise_sig_max": 999,
+        "ps1_sgveto_rad": 2,
+        "ps1_sgveto_th": 0.76,
+        "ps1_confusion_rad": 3,
+        "ps1_confusion_sg_tol": 0.1,
+    }
 
 
 def test_run_t0_infantSN(tar_path, testrunconfig):
-    '''
+    """
     Test infant filter
-    '''
+    """
 
-    my_filter = InfantFilter([], base_config={'catsHTM.default':None}, run_config=testrunconfig, logger=logging.getLogger())
-    dap = DevAlertProcessor(my_filter, use_dev_alerts=True)
+    my_filter = InfantFilter(logger=AmpelLogger.get_logger(), **testrunconfig)
+    dap = DevAlertProcessor(my_filter)
     dap.process_tar(tar_path, iter_max=100)
     assert len(dap.get_accepted_alerts()) == 1
- 
-
