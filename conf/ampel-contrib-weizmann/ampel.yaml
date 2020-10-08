@@ -6,6 +6,7 @@ unit:
 alias:
   t0:
     InfantSN:
+      min_tspan: 0.02
       max_tspan: 4.5
       max_tul: 2.5
       min_rb: 0.0
