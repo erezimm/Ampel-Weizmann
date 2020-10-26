@@ -46,7 +46,7 @@ class WeizmannEllipticalFilter(ExtcatsUnit, AbsAlertFilter[PhotoAlert]):
             return False
 
         # now consider the last photopoint
-        latest = alert.pps[0]["body"]
+        latest = alert.pps[0]
 
         # check if it a positive subtraction
         if not (
