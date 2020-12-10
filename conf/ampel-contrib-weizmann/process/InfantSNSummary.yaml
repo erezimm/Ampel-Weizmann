@@ -1,11 +1,10 @@
 name: InfantSNSummary
-schedule: every(60).minutes
+schedule: every(10).minutes
 tier: 3
 template: ztf_periodic_summary
 channel:
   any_of:
     - WEIZMANN_INFANTSN
-    - WEIZMANN_INFANTSN_SINGLE
 load:
   - TRANSIENT
   - COMPOUND
@@ -16,3 +15,10 @@ run:
     config: ztf_generalsn
     override:
       slack_channel: "#infantsn_ampel"
+  - unit: SkyPortalPublisher
+    config:
+      token:
+        key: fritz/jvs/ampelbot
+      base_url: https://fritz.science
+      groups: ['AmpelInfant']
+
