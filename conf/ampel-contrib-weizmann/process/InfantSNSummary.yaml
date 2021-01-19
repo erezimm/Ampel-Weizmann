@@ -9,7 +9,10 @@ load:
   - TRANSIENT
   - COMPOUND
   - DATAPOINT
-  - T2RECORD
+  - col: t2
+    query_complement:
+      unit:
+        $in: [T2CatalogMatch]
 run:
   - unit: SlackSummaryPublisher
     config: ztf_generalsn
@@ -20,5 +23,3 @@ run:
       token:
         key: fritz/jvs/ampelbot
       base_url: https://fritz.science
-      groups: ['AmpelInfant']
-
