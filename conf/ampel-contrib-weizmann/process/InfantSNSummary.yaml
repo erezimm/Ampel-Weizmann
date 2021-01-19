@@ -12,7 +12,7 @@ load:
   - col: t2
     query_complement:
       unit:
-        $in: [T2CatalogMatch]
+        $nin: [T2SNCosmo]
 run:
   - unit: SlackSummaryPublisher
     config: ztf_generalsn
