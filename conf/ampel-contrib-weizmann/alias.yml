@@ -1,0 +1,35 @@
+t0:
+  InfantSN:
+    min_tspan: 0.02
+    max_tspan: 4.5
+    max_tul: 2.5
+    min_rb: 0.0
+    min_drb: 0.3
+    min_fwhm: 0.5
+    max_fwhm: 5.0
+    max_elong: 100
+    max_magdiff: 0.75
+    max_nbad: 5
+    min_sso_dist: 10
+    min_gal_lat: 14
+    gaia_rs: 40
+    gaia_pm_signif: 3
+    gaia_plx_signif: 3
+    gaia_veto_gmag_min: 9
+    gaia_veto_gmag_max: 20
+    gaia_excessnoise_sig_max: 999
+    ps1_sgveto_rad: 2
+    ps1_sgveto_th: 0.76
+    ps1_confusion_rad: 3
+    ps1_confusion_sg_tol: 0.1
+t3:
+  ztf_generalsn:
+    excitement:
+      Low: 1
+      Mid: 3
+      High: 10
+    slack_channel: "#generalsn-ampel"
+    slack_token:
+      key: slack/rcf
+    full_photometry: false
+    quiet: true

@@ -8,10 +8,6 @@
 # Last Modified By  : Jakob van Santen <jakob.van.santen@desy.de>
 
 
-from functools import partial
-from typing import Callable, Optional, Dict, Any, Union, List
-
-from ampel.alert.PhotoAlert import PhotoAlert
 from ampel.ztf.base.CatalogMatchFilter import CatalogMatchFilter
 
 class WeizmannEllipticalFilter(CatalogMatchFilter):

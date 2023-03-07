@@ -1,6 +1,7 @@
 name: InfantSNSummary
 schedule: every(10).minutes
 tier: 3
+active: true
 template: ztf_periodic_summary
 channel:
   any_of:
@@ -9,10 +10,7 @@ load:
   - TRANSIENT
   - COMPOUND
   - DATAPOINT
-  - col: t2
-    query_complement:
-      unit:
-        $nin: [T2SNCosmo]
+  - T2
 run:
   - unit: SlackSummaryPublisher
     config: ztf_generalsn

@@ -2,7 +2,7 @@ from setuptools import find_namespace_packages, setup
 
 setup(
     name="ampel-contrib-weizmann",
-    version="0.7.0",
+    version="0.8.3",
     packages=find_namespace_packages(),
     package_data={
         "conf": [
@@ -20,7 +20,7 @@ setup(
     install_requires=[
         "ampel-interface",
         "ampel-photometry",
-        "ampel-contrib-hu",
+        "ampel-hu-astro",
         "astropy",
     ],
 )

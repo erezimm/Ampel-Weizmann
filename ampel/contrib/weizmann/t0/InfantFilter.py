@@ -4,15 +4,14 @@
 # License           : BSD-3-Clause
 # Author            : m. giomi <matteo.giomi@desy.de>
 # Date              : 28.08.2018
-# Last Modified Date: 05.10.2020
-# Last Modified By  : Jakob van Santen <jakob.van.santen@desy.de>
+# Last Modified Date: 03.03.2023
+# Last Modified By  : J Nordin <jnordin@physik.hu-berlin.de>
 
-from typing import Optional, Union
 
 import numpy as np
 
-from ampel.alert.PhotoAlert import PhotoAlert
-from ampel.contrib.hu.t0.DecentFilter import DecentFilter
+from ampel.protocol.AmpelAlertProtocol import AmpelAlertProtocol
+from ampel.ztf.t0.DecentFilter import DecentFilter
 
 
 class InfantFilter(DecentFilter):
@@ -25,31 +24,26 @@ class InfantFilter(DecentFilter):
     max_tul: float  #: maximum time between the first detection and the first non-detection prior to that [days]
     min_fwhm: float  #: sexctrator fwhm (assume gaussian) [pix]
 
-    def apply(self, alert: PhotoAlert) -> Optional[Union[bool, int]]:
+    def process(self, alert: AmpelAlertProtocol) -> None | bool | int:
 
         # -------------------------------------------------------------------- #
         #                   CUT ON THE HISTORY OF THE ALERT                    #
         # -------------------------------------------------------------------- #
 
-        npp = len(alert.pps)
+        pps = [el for el in alert.datapoints if el.get("candid") is not None]
+        npp = len(pps)
+        # Add max_ndet to decent filter, to skip this.
         if not (self.min_ndet <= npp <= self.max_ndet):
             self.logger.info(None, extra={"nDet": npp})
             return None
 
-        # cut on length of detection history
-        detections_jds = sorted(alert.get_values("jd", data="pps"))
-        det_tspan = detections_jds[-1] - detections_jds[0]
-        if not (self.min_tspan <= det_tspan <= self.max_tspan):
-            self.logger.debug(
-                "rejected: detection history is %.3f d long, requested between %.3f and %.3f d"
-                % (det_tspan, self.min_tspan, self.max_tspan)
-            )
-            return None
 
         # cut on the distance between the first detection and the closest
         # non-detection prior to the first detection
-        ulim_jds = alert.get_values("jd", data="uls")
+        detections_jds = sorted( [pp['jd'] for pp in pps] )
+        ulim_jds = [el['jd'] for el in alert.datapoints if el.get("candid") is None]
         upperlimits_jds = np.array(sorted(ulim_jds)) if not ulim_jds is None else []
+        
         if len(upperlimits_jds) > 0:
 
             mask = np.where(
@@ -71,10 +65,11 @@ class InfantFilter(DecentFilter):
         #                           IMAGE QUALITY CUTS                         #
         # -------------------------------------------------------------------- #
 
-        latest = alert.pps[0]
+        latest = alert.datapoints[0]
         if not self._alert_has_keys(latest):
             return None
 
+        # Add min_fhwm to decent filter, to skip this.
         if not (self.min_fwhm <= latest["fwhm"] <= self.max_fwhm):
             self.logger.debug(
                 "rejected: fwhm %.2f not within the range %.2f - %.2f"
@@ -83,4 +78,4 @@ class InfantFilter(DecentFilter):
             return None
 
         # now apply the DecentFilter
-        return DecentFilter.apply(self, alert)
+        return DecentFilter.process(self, alert)

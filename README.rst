@@ -2,12 +2,10 @@
 Ampel components from Weizmann group
 ===================================
 
-Contains as of August 2018:
+Contains as of Februrary 2023:
 
 T0
 --
 * InfantFilter
+* WeizmannEllipticalFilter
 
-T2
---
-* SNCosmo
