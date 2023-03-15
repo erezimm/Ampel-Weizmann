@@ -13,9 +13,16 @@ load:
   - T2
 run:
   - unit: SlackSummaryPublisher
-    config: ztf_generalsn
-    override:
-      slack_channel: "#infantsn_ampel"
+    config:
+      excitement:
+        Low: 1
+        Mid: 3
+        High: 5
+      slack_channel: "#ztf_infantsn"
+      slack_token:
+        label: slack/ztf_general/jno
+      full_photometry: false
+      quiet: true
   - unit: SkyPortalPublisher
     config:
       token:
